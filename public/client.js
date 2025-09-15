@@ -212,6 +212,8 @@ function mousePressed() {
     }
   });
 }
+// adding sommcents
+
 
 function insideCard(mx, my, card) {
   return mx > card.x && mx < card.x + 180 && my > card.y && my < card.y + 180;
