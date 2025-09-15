@@ -1,0 +1,9 @@
+{
+  "name": "so-clover-online",
+  "version": "0.0.1",
+  "description": "Online application for the word game So Clover",
+  "dependencies": {
+    "express": "^5.1.0",
+    "socket.io": "^4.8.1"
+  }
+}

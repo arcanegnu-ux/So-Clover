@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/p5@1.11.10/lib/p5.js"></script>
+  <meta charset="UTF-8">
+  <title>So Clover!</title>
+  <link rel="stylesheet" href="client.css">
+</head>
+<body>
+  <!-- MENU SCREEN -->
+  <div id="menu" class="screen active">
+    <h1>So Clover!</h1>
+    <button id="startBtn">Start Game</button>
+    <button id="rulesBtn">Rules</button><br><br>
+
+    <label for="nicknameInput">Enter your nickname:</label><br>
+    <input id="nicknameInput" type="text" placeholder="Your name" required autocomplete="off"><br><br>
+
+    <h3>Players Connected: (<span id="playerCount">0</span>)</h3>
+    <ul id="playerList"></ul>
+
+  </div>
+
+  <!-- RULES SCREEN -->
+  <div id="rules" class="screen">
+    <h2>How to Play</h2>
+    <p>Enter words based on the rules of the game. Score points for valid words!</p>
+    <button id="backToMenuBtn">Back to Menu</button>
+  </div>
+
+  <!-- GAME SCREEN -->
+  <div id="game" class="screen">
+    <h2>Your Board</h2>
+    <!-- <input id="wordInput" type="text" placeholder="Enter word">
+    <button id="submitWord">Submit</button> -->
+    <input type="text" id="clueBox" maxlength="20" autocomplete="off">
+
+    <div style="position: relative; display: flex; justify-content: center;">
+      <div id="boardCanvas"></div> 
+      <button id="readyBtn" style="position: absolute; right: 10%; top: 50%; transform: translateY(-50%);">Ready</button>
+    </div>
+    <br><br><br><br><br><br><br><button id="backToMenuBtn2">Back to Menu</button>
+  </div>
+
+  <!-- CHOOSE BOARD SCREEN -->
+  <div id="collaborative" class="screen">
+    <h2>Choose A Board!</h2>
+      <button id="shareBtn">Share Board</button>
+    <br><br><br><br><br><br><br><button id="backToMenuBtn2">Back to Menu</button>
+  </div>
+
+  <!-- SHARING SCREEN -->
+  <div id="sharing" class="screen">
+    <h2 id="sharedBoardOwner"></h2>
+    <div id="boardCanvas2"></div>
+    <button id="shareBtn2">Share Board</button>
+    <br><br><br><br><br><br><br><button id="backToMenuBtn2">Back to Menu</button>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="client.js"></script>
+</body>
+</html>
