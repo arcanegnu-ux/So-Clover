@@ -202,7 +202,7 @@ function mousePressed() {
   if (game.gameState !== "sharing") return; // Only allow interaction in sharing phase
   
   for (let slot of slots) {
-    if (insideSlot(true, slot)) {
+    if (insideSlot(slot)) {
       slot.filled = false; // Mark slot as unfilled if clicked
     }
   }
@@ -486,7 +486,9 @@ document.addEventListener('DOMContentLoaded', () => {
       ownerPara.textContent = `${sharedBoardOwner}'s board:`;
     }
     sharedClues = clues;
-  
+    for (let slot of slots) {
+      slot.filled = false; // Reset slots
+    }
     // Display the shared board for all players
     // For example, show a modal or update a section of the UI
     // You can also render the board visually here
