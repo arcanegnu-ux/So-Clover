@@ -269,6 +269,17 @@ function mouseReleased() {
         socket.emit("placeCard", { id: selectedCard.id, x: selectedCard.x, y: selectedCard.y, slot: i });
       }
     };
+    // If not placed in any slot, emit placeCard with slot: null and new x/y
+    if (!placed) {
+      let actualCard = sharedBoard.find(c => c.id === selectedCard.id);
+      if (actualCard) {
+        // Set to some "bank" position or where the card was released
+        actualCard.x = mouseX - 90;
+        actualCard.y = mouseY - 90;
+        actualCard.slot = null;
+        socket.emit("placeCard", { id: selectedCard.id, x: actualCard.x, y: actualCard.y, slot: null });
+      }
+    }
     for (let card of sharedBoard) {
       if (insideCard(mouseX, mouseY, card) && mouseX == startX && mouseY == startY) {
         card.rotation = (card.rotation + 1) % 4; // 90° clockwise
@@ -519,6 +530,12 @@ document.addEventListener('DOMContentLoaded', () => {
       card.x = data.x;
      card.y = data.y;
      card.slot = data.slot;
+     // Reset all slots
+    slots.forEach(slot => slot.filled = false);
+    // Mark the slot as filled if the card is placed in a slot
+    if (typeof data.slot === "number" && data.slot !== null) {
+      slots[data.slot].filled = true;
+    }
     }
   });
 
